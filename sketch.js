@@ -50,7 +50,7 @@ function MouseWheelHandler(e) {
 }
 function preload() {
   actualWidth = constrain(window.windowWidth,1,1280);
-  actualHeight = constrain(window.windowHeight,1,1640);
+  actualHeight = constrain(window.windowHeight,1,1280);
   testReq = new XMLHttpRequest();
   updateMap(userCoords, zoomLevel);
   modeBtn = createButton(mode);
