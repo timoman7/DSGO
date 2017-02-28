@@ -68,7 +68,7 @@ function preload() {
   myMap.elt.style.width = actualWidth + "px";
   myMap.elt.style.height = actualHeight + "px";
   myMap.id('map');
-  testReq.open("GET", "http://a.tiles.mapbox.com/v4/mapbox.streets.json?access_token=" + accessToken);
+  testReq.open("GET", "https://a.tiles.mapbox.com/v4/mapbox.streets.json?access_token=" + accessToken);
   testReq.onreadystatechange = function() {
     if (this.readyState === 4 && this.status !== 0 && this.responseURL === "") {
       L.mapbox.accessToken = accessToken;
