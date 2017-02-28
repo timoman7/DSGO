@@ -7,8 +7,9 @@ var player;
 var mode = "tracking";
 // 0 = mine
 // 1 = mapbox
+// 2 = my style
 var tokens = ["pk.eyJ1Ijoic3NqM2JhbmUiLCJhIjoiY2l6b2FpMTdqMDJ5cTMydGo0amF1dXRzYyJ9.GABQWcrBBn3RJiwczospsQ", "pk.eyJ1IjoiY29kaW5ndHJhaW4iLCJhIjoiY2l6MGl4bXhsMDRpNzJxcDh0a2NhNDExbCJ9.awIfnl6ngyHoB3Xztkzarw","pk.eyJ1Ijoic3NqM2JhbmUiLCJhIjoiY2l6b2FpMTdqMDJ5cTMydGo0amF1dXRzYyJ9.GABQWcrBBn3RJiwczospsQ"];
-var accessToken = tokens[1];
+var accessToken = tokens[0];
 var url;
 var modeBtn;
 var zoomLevel = 5;
@@ -36,9 +37,10 @@ function updatePos() {
 }
 
 function updateMap(clatlon, zoom) {
-	var styleName = ""
-  url = "https://api.mapbox.com/styles/v1/ssj3bane/cizpvdjsj006a2snydyxwyohe.html?title=true&access_token="+accessToken+"#0.0/0.000000/0.000000/0" + clatlon.longitude + ',' + clatlon.latitude + ',' + zoom + '/' + actualWidth + 'x' + actualHeight + '?access_token=' + accessToken;
-  mapImg = loadImage(url);
+	var backupURL="https://api.mapbox.com/styles/v1/mapbox/dark-v9/static/"+clatlon.longitude+','+clatlon.latitude+','+zoom+'/'+actualWidth+'x'+actualHeight+'?access_token='+accessToken;
+	var styleName = "";
+  url = "https://api.mapbox.com/styles/v1/ssj3bane/cizpvdjsj006a2snydyxwyohe.html?title=true&access_token="+accessToken+"#"+zoom+"/0.000000/0.000000/0" + clatlon.longitude + '/' + clatlon.latitude + '/' + zoom + '/' + actualWidth + 'x' + actualHeight;
+  mapImg = loadImage(backupURL);
 }
 
 function MouseWheelHandler(e) {
