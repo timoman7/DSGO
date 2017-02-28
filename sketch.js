@@ -8,7 +8,7 @@ var mode = "tracking";
 // 0 = mine
 // 1 = mapbox
 var tokens = ["pk.eyJ1Ijoic3NqM2JhbmUiLCJhIjoiY2l6b2FpMTdqMDJ5cTMydGo0amF1dXRzYyJ9.GABQWcrBBn3RJiwczospsQ", "pk.eyJ1IjoiY29kaW5ndHJhaW4iLCJhIjoiY2l6MGl4bXhsMDRpNzJxcDh0a2NhNDExbCJ9.awIfnl6ngyHoB3Xztkzarw"];
-var accessToken = tokens[0];
+var accessToken = tokens[1];
 var url;
 var modeBtn;
 var zoomLevel = 5;
