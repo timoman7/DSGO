@@ -101,11 +101,11 @@ function setup() {
 	if(theMap){
 		if (theMap.addEventListener) {
 			// IE9, Chrome, Safari, Opera
-			theMap.addEventListener("mousewheel", MouseWheelHandler, false);
+			theMap._container.addEventListener("mousewheel", MouseWheelHandler, false);
 			// Firefox
-			theMap.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+			theMap._container.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
 		}else{
-			theMap.attachEvent("onmousewheel", MouseWheelHandler);
+			theMap._container.attachEvent("onmousewheel", MouseWheelHandler);
 		}
 	}else{
 		if (can.elt.addEventListener) {
