@@ -89,9 +89,10 @@ function preload() {
   testReq.open("GET", "https://a.tiles.mapbox.com/v4/mapbox.streets.json?access_token=" + accessToken);
   testReq.onreadystatechange = function() {
     if (this.readyState === 4 && this.status !== 0 && this.responseURL !== "") {
-      L.mapbox.accessToken = accessToken;
+      	L.mapbox.accessToken = accessToken;
 	myMap.mouseWheel(MouseWheelHandler);
-      theMap = L.mapbox.map('map', 'mapbox.streets');
+	theMap.scrollWheelZoom._enabled=false;
+      	theMap = L.mapbox.map('map', 'mapbox.streets');
     }
   }
   testReq.send();
@@ -178,7 +179,8 @@ function draw() {
   if (mode === "tracking") {
     if (curCoords) {
       if (drawType === "normal") {
-	theMap.options.dragging._enabled=false;
+	theMap.dragging._enabled=false;
+	theMap.dragging._draggable._enabled=false;
 	
         theMap.setView([curCoords.latitude, curCoords.longitude], zoomLevel);
       } else {
@@ -188,7 +190,8 @@ function draw() {
     }
   } else {
     if (drawType === "normal") {
-	theMap.options.dragging._enabled=true;
+	theMap.dragging._enabled=true;
+	theMap.dragging._draggable._enabled=true;
       	//theMap = L.mapbox.map('map', 'mapbox.streets');
     } else {
       //Draw with img
