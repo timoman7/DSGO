@@ -6,6 +6,8 @@ var curCoords;
 var player;
 var facets;
 var places;
+var doneMarking=false;
+var markers=[];
 var mode = "tracking";
 // 0 = mine
 // 1 = mapbox
@@ -89,6 +91,9 @@ function preload() {
 }
 
 function setup() {
+	for(var i=0;i<places.length;i++){
+		markers.push(places[i]);
+	}
   can = createCanvas(actualWidth, actualHeight);
   if (curCoords) {
     //theMap.setView([curCoords.latitude,curCoords.longitude],2);
@@ -162,6 +167,7 @@ function draw() {
   if (mode === "tracking") {
     if (curCoords) {
       if (drawType === "normal") {
+	theMap.options.dragging._enabled=false;
         theMap.setZoom(zoomLevel);
         theMap.setView([curCoords.latitude, curCoords.longitude], theMap.getZoom());
       } else {
@@ -171,7 +177,8 @@ function draw() {
     }
   } else {
     if (drawType === "normal") {
-      theMap = L.mapbox.map('map', 'mapbox.streets');
+	theMap.options.dragging._enabled=true;
+      	theMap = L.mapbox.map('map', 'mapbox.streets');
     } else {
       //Draw with img
 
@@ -192,6 +199,15 @@ function draw() {
 
     }
   }
+	if(drawType === "normal"){
+		for(var i = 0; i < places.length && !doneMarking;i++){
+			markers[i]=L.circle([places[i].latitude,places[i].longitude], 15);
+			markers[i].addTo(theMap);
+		}
+		if(!doneMarking){
+			doneMarking=true;
+		}
+	}
   if (drawType === "img") {
     image(mapImg, 0, 0);
     if (mapImg.pixels.length < 1) {
@@ -222,5 +238,7 @@ function draw() {
         ellipse(width / 2, height / 2, 10, 10);
       }
     }
+  }else{
+	  
   }
 }
