@@ -58,7 +58,7 @@ function MouseWheelHandler(e) {
 }
 function preload() {
 	facets = loadJSON("facets.json",function(data){return data;});
-	places = loadJSON("places.json",function(data){return data;});
+	places = loadJSON("truePlaces.json",function(data){return data;});
   actualWidth = constrain(window.windowWidth,1,1280);
   actualHeight = constrain(window.windowHeight,1,1280);
   testReq = new XMLHttpRequest();
