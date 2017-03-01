@@ -62,9 +62,6 @@ function MouseWheelHandler(e) {
 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
 	zoomLevel=constrain(zoomLevel+(delta/10),0,22);
 	pitch = constrain(map(zoomLevel,5,22,0,60),0,60);
-	if(theMap){
-		console.log(theMap.scrollWheelZoom._onWheelScroll(e));
-	}
 	return false;
 }
 function preload() {
@@ -95,7 +92,9 @@ function preload() {
       	L.mapbox.accessToken = accessToken;
 	myMap.mouseWheel(MouseWheelHandler);
       	theMap = L.mapbox.map('map', 'mapbox.streets');
-    	theMap.scrollWheelZoom._enabled=false;
+    	theMap.scrollWheelZoom._onWheelScroll=function(e){
+		
+	};
     }
   }
   testReq.send();
