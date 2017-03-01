@@ -50,8 +50,8 @@ function updateMap(clatlon, zoom) {
 }
 
 function latlonToXY(latlon){
-	var newx =  ((actualWidth/360.0) * (180 + latlon.longitude));
-	var newy =  ((actualHeight/180.0) * (90 - latlon.latitude));
+	var newx =  (((actualWidth)/360.0) * (180 + latlon.longitude));
+	var newy =  (((actualHeight)/180.0) * (90 - latlon.latitude));
 	return {x:newx,y:newy};
 }
 
@@ -91,8 +91,8 @@ function preload() {
     if (this.readyState === 4 && this.status !== 0 && this.responseURL !== "") {
       	L.mapbox.accessToken = accessToken;
 	myMap.mouseWheel(MouseWheelHandler);
-	theMap.scrollWheelZoom._enabled=false;
       	theMap = L.mapbox.map('map', 'mapbox.streets');
+    	theMap.scrollWheelZoom._enabled=false;
     }
   }
   testReq.send();
