@@ -102,7 +102,9 @@ function preload() {
 
 function setup() {
 	for(var i=0;i<places.length;i++){
+		
 		markers.push(places[i]);
+		console.log(markers,places[i]);
 	}
   can = createCanvas(actualWidth, actualHeight);
   if (curCoords) {
