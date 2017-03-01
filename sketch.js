@@ -62,6 +62,7 @@ function MouseWheelHandler(e) {
 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
 	zoomLevel=constrain(zoomLevel+(delta/10),0,22);
 	pitch = constrain(map(zoomLevel,5,22,0,60),0,60);
+	console.log(delta);
 	console.log(zoomLevel);
 	return false;
 }
