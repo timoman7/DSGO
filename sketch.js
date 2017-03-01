@@ -101,7 +101,7 @@ function preload() {
 }
 
 function setup() {
-	for(var i=0;i<places.length;i++){
+	for(var i in places){
 		
 		markers.push(places[i]);
 		console.log(markers,places[i]);
