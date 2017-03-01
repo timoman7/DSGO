@@ -194,6 +194,7 @@ function draw() {
     if (drawType === "normal") {
 	theMap.dragging._enabled=true;
 	theMap.dragging._draggable._enabled=true;
+	zoomLevel=theMap.getZoom();
       	//theMap = L.mapbox.map('map', 'mapbox.streets');
     } else {
       //Draw with img
