@@ -92,6 +92,7 @@ function preload() {
   testReq.onreadystatechange = function() {
     if (this.readyState === 4 && this.status !== 0 && this.responseURL !== "") {
       L.mapbox.accessToken = accessToken;
+	myMap.mouseWheel(MouseWheelHandler);
       theMap = L.mapbox.map('map', 'mapbox.streets');
     }
   }
@@ -107,15 +108,7 @@ function setup() {
     //theMap.setView([curCoords.latitude,curCoords.longitude],2);
   }
 	if(theMap){
-		myMap.elt.style.zIndex="0";
-		if (theMap.addEventListener) {
-			// IE9, Chrome, Safari, Opera
-			theMap._container.addEventListener("mousewheel", MouseWheelHandler, false);
-			// Firefox
-			theMap._container.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
-		}else{
-			theMap._container.attachEvent("onmousewheel", MouseWheelHandler);
-		}
+		
 	}else{
 		if (can.elt.addEventListener) {
 			// IE9, Chrome, Safari, Opera
