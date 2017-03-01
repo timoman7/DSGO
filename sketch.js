@@ -80,7 +80,7 @@ function preload() {
   myMap.id('map');
   testReq.open("GET", "https://a.tiles.mapbox.com/v4/mapbox.streets.json?access_token=" + accessToken);
   testReq.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status !== 0 && this.responseURL === "") {
+    if (this.readyState === 4 && this.status !== 0 && this.responseURL !== "") {
       L.mapbox.accessToken = accessToken;
       theMap = L.mapbox.map('map', 'mapbox.streets');
     }
