@@ -98,14 +98,25 @@ function setup() {
   if (curCoords) {
     //theMap.setView([curCoords.latitude,curCoords.longitude],2);
   }
-  if (can.elt.addEventListener) {
-    // IE9, Chrome, Safari, Opera
-    can.elt.addEventListener("mousewheel", MouseWheelHandler, false);
-    // Firefox
-    can.elt.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
-  }else{
-    can.elt.attachEvent("onmousewheel", MouseWheelHandler);
-  }
+	if(theMap){
+		if (theMap.addEventListener) {
+			// IE9, Chrome, Safari, Opera
+			theMap.addEventListener("mousewheel", MouseWheelHandler, false);
+			// Firefox
+			theMap.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+		}else{
+			theMap.attachEvent("onmousewheel", MouseWheelHandler);
+		}
+	}else{
+		if (can.elt.addEventListener) {
+			// IE9, Chrome, Safari, Opera
+			can.elt.addEventListener("mousewheel", MouseWheelHandler, false);
+			// Firefox
+			can.elt.addEventListener("DOMMouseScroll", MouseWheelHandler, false);
+		}else{
+			can.elt.attachEvent("onmousewheel", MouseWheelHandler);
+		}
+	}	
 }
 
 function swapMode() {
