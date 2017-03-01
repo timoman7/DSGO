@@ -62,6 +62,9 @@ function MouseWheelHandler(e) {
 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
 	zoomLevel=constrain(zoomLevel+(delta/10),0,22);
 	pitch = constrain(map(zoomLevel,5,22,0,60),0,60);
+	if(theMap){
+		console.log(theMap.scrollWheelZoom._onWheelScroll(e));
+	}
 	return false;
 }
 function preload() {
