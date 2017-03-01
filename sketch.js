@@ -104,7 +104,6 @@ function setup() {
 	for(var i in places){
 		
 		markers.push(places[i]);
-		console.log(markers,places[i]);
 	}
   can = createCanvas(actualWidth, actualHeight);
   if (curCoords) {
