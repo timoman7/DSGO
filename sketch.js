@@ -107,6 +107,7 @@ function setup() {
     //theMap.setView([curCoords.latitude,curCoords.longitude],2);
   }
 	if(theMap){
+		myMap.elt.style.zIndex="0";
 		if (theMap.addEventListener) {
 			// IE9, Chrome, Safari, Opera
 			theMap._container.addEventListener("mousewheel", MouseWheelHandler, false);
