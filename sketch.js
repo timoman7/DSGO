@@ -221,6 +221,7 @@ function draw() {
 		if(!doneMarking){
 			for(var i in places){
 				markers[i]=L.marker([places[i].latitude,places[i].longitude]);
+				markers[i].bindPopup("<p>"+places[i].name+" - "+places[i].address+"</p>");
 				markers[i].addTo(theMap);
 			}
 		}
