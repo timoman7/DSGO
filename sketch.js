@@ -62,6 +62,7 @@ function MouseWheelHandler(e) {
 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
 	zoomLevel=constrain(zoomLevel+(delta/10),0,22);
 	pitch = constrain(map(zoomLevel,5,22,0,60),0,60);
+	console.log(zoomLevel);
 	return false;
 }
 function preload() {
@@ -185,6 +186,7 @@ function draw() {
     if (curCoords) {
       if (drawType === "normal") {
 	theMap.options.dragging._enabled=false;
+	
         theMap.setView([curCoords.latitude, curCoords.longitude], zoomLevel);
       } else {
         //Draw with img
@@ -217,7 +219,7 @@ function draw() {
   }
 	if(drawType === "normal"){
 		for(var i = 0; i < places.length && !doneMarking;i++){
-			markers[i]=L.circle([places[i].latitude,places[i].longitude], 15);
+			markers[i]=L.marker([places[i].latitude,places[i].longitude]);
 			markers[i].addTo(theMap);
 		}
 		if(!doneMarking){
