@@ -219,9 +219,11 @@ function draw() {
     }
   }
 	if(drawType === "normal"){
-		for(var i = 0; i < places.length && !doneMarking;i++){
-			markers[i]=L.marker([places[i].latitude,places[i].longitude]);
-			markers[i].addTo(theMap);
+		if(!doneMarking){
+			for(var i in places){
+				markers[i]=L.marker([places[i].latitude,places[i].longitude]);
+				markers[i].addTo(theMap);
+			}
 		}
 		if(!doneMarking){
 			doneMarking=true;
