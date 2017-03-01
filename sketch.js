@@ -49,6 +49,12 @@ function updateMap(clatlon, zoom) {
   mapImg = loadImage(url);
 }
 
+function latlonToXY(latlon){
+	var newx =  ((actualWidth/360.0) * (180 + latlon.longitude));
+	var newy =  ((actualHeight/180.0) * (90 - latlon.latitude));
+	return {x:newx,y:newy};
+}
+
 function MouseWheelHandler(e) {
 
 	// cross-browser wheel delta
