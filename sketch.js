@@ -148,12 +148,16 @@ function draw() {
   updatePos();
   if (theMap) {
     if (objLength(theMap.getTileJSON()) > 0) {
-      drawType = "normal";
+      	drawType = "normal";
+	can.clear();
+	can.hide();
     } else {
-      drawType = "img";
+      	drawType = "img";
+	can.show();
     }
   } else {
-    drawType = "img";
+    	drawType = "img";
+	can.show();
   }
   if (mode === "tracking") {
     if (curCoords) {
