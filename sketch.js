@@ -168,8 +168,7 @@ function draw() {
     if (curCoords) {
       if (drawType === "normal") {
 	theMap.options.dragging._enabled=false;
-        theMap.setZoom(zoomLevel);
-        theMap.setView([curCoords.latitude, curCoords.longitude], theMap.getZoom());
+        theMap.setView([curCoords.latitude, curCoords.longitude], zoomLevel);
       } else {
         //Draw with img
 
