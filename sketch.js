@@ -4,6 +4,8 @@ var mapImg;
 var theMap;
 var curCoords;
 var player;
+var facets;
+var places;
 var mode = "tracking";
 // 0 = mine
 // 1 = mapbox
@@ -17,6 +19,8 @@ var can;
 var testReq;
 var actualWidth = 1;
 var actualHeight = 1;
+var bearing = 0; // 0 - 360
+var pitch = 0; // 0 - 60
 var userCoords = {
   latitude: 0,
   longitude: 0
@@ -38,9 +42,9 @@ function updatePos() {
 
 function updateMap(clatlon, zoom) {
 	var backupURL="https://api.mapbox.com/styles/v1/mapbox/dark-v9/static/"+clatlon.longitude+','+clatlon.latitude+','+zoom+'/'+actualWidth+'x'+actualHeight+'?access_token='+accessToken;
-	var styleName = "";
-  url = "https://api.mapbox.com/styles/v1/ssj3bane/cizpvdjsj006a2snydyxwyohe.html?title=true&access_token="+accessToken+"#"+zoom+"/0.000000/0.000000/0" + clatlon.longitude + '/' + clatlon.latitude + '/' + zoom + '/' + actualWidth + 'x' + actualHeight;
-  mapImg = loadImage(backupURL);
+	var styleName = "cizpvdjsj006a2snydyxwyohe";
+  url = "https://api.mapbox.com/styles/v1/ssj3bane/"+styleName+"/static/"+clatlon.longitude+","+clatlon.latitude+","+zoom+","+bearing+","+pitch+"/"+actualWidth+"x"+actualHeight+"?access_token="+accessToken;
+  mapImg = loadImage(url);
 }
 
 function MouseWheelHandler(e) {
@@ -48,10 +52,13 @@ function MouseWheelHandler(e) {
 	// cross-browser wheel delta
 	e = window.event || e; // old IE support
 	var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-	zoomLevel=constrain(zoomLevel+(delta/10),0,20);
+	zoomLevel=constrain(zoomLevel+(delta/10),0,22);
+	pitch = constrain(map(zoomLevel,5,22,0,60),0,60);
 	return false;
 }
 function preload() {
+	facets = loadJSON("facets.json",function(data){return data;});
+	places = loadJSON("places.json",function(data){return data;});
   actualWidth = constrain(window.windowWidth,1,1280);
   actualHeight = constrain(window.windowHeight,1,1280);
   testReq = new XMLHttpRequest();
